@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+  	 	
+ 	<appender name="MAIL" class="ch.qos.logback.core.rolling.RollingFileAppender">
+ 		<file>c:/logs/mail.log</file>
+    	<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      		<fileNamePattern>c:/logs/mail.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+      		<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+        		<maxFileSize>5MB</maxFileSize>
+      		</timeBasedFileNamingAndTriggeringPolicy>
+    	</rollingPolicy>
+    	
+    	<encoder>
+      		<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} | %-5.5p | %-10.10t | %-50.50C{10}:%-5.5L | %msg%n</pattern>
+    	</encoder>
+  	</appender>
+  	
+  	<appender name="GENERAL" class="ch.qos.logback.core.rolling.RollingFileAppender">
+ 		<file>c:/logs/general.log</file>
+    	<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      		<fileNamePattern>c:/logs/general.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+      		<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+        		<maxFileSize>10MB</maxFileSize>
+      		</timeBasedFileNamingAndTriggeringPolicy>
+    	</rollingPolicy>
+    	
+    	<encoder>
+      		<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} | %-5.5p | %-10.10t | %-50.50C{10}:%-5.5L | %msg%n</pattern>
+    	</encoder>
+  	</appender>
+	
+	<appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} | %-5.5p | %-10.10t | %-50.50C{10}:%-5.5L | %msg%n</pattern>
+		</encoder>
+ 	</appender>
+	
+	<root level="INFO">
+		<appender-ref ref="CONSOLE"/>
+		<appender-ref ref="GENERAL"/>
+	</root>
+	<logger name="space.indietech.MailSender" level="INFO"  additivity="false">
+		<appender-ref ref="CONSOLE"/>
+		<appender-ref ref="MAIL"/>
+	</logger>
+	<logger name="space.indietech" level="DEBUG" additivity="false">
+		<appender-ref ref="GENERAL"/>
+	</logger>
+	<logger name="org.hibernate.SQL" level="DEBUG" additivity="false">
+		<appender-ref ref="CONSOLE"/>
+	</logger>
+	
+	<logger name="org.hibernate.type" level="TRACE" additivity="false">
+		<appender-ref ref="CONSOLE"/>
+	</logger>
+</configuration>

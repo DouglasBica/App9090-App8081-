@@ -1,0 +1,1 @@
+insert into produto (nome, ativo, custo, data_compra, perc_lucro, qtd) values ('abacaxi', true, 10, '2017-10-25', 100, 100);

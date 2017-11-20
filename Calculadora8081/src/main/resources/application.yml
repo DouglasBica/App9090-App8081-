@@ -1,0 +1,15 @@
+spring:
+  application:
+      name: plataforma
+  jackson:
+    serialization:
+        write_dates_as_timestamps: false
+    serialization-inclusion: NON_NULL
+    deserialization:
+        fail_on_unknown_properties: false
+        read_date_timestamps_as_nanoseconds: false
+  datasource:
+    url: jdbc:h2:~/test;AUTO_SERVER=TRUE
+    
+server:
+  port: 8081
